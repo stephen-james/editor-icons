@@ -1,0 +1,15 @@
+{
+  "name": "editor-icons",
+  "version": "1.0.0",
+  "description": "Text Editor Icons",
+  "main": "none",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stephen James",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-webfont": "^0.4.8"
+  }
+}
