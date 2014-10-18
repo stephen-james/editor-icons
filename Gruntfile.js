@@ -6,22 +6,32 @@ module.exports = function(grunt) {
     
     copy: {
       main: {
-        src: 'src/editor-icons_*.svg',
-        dest: '*.svg',
+        expand: true,
+        cwd: 'src',
+        src: 'editor-icons_*.svg',
+        dest: './src/svg/',
+        rename: function(dest, src) {
+          return dest + src.split('_')[1];
+        }
       },
     },
 
     webfont: {
       icons: {
-        src: 'src/*.svg',
-        dest: 'build',
+        src: 'src/svg/*.svg',
+        dest: 'dist',
+        destCss: './dist/less',
+        relativeFontPath: './fonts',  
+
         options: {
           types: 'woff',
           embed: false,
           engine: 'node',
+          stylesheet: 'less',
           templateOptions: {
-            baseClass: 'e',
-            classPrefix: 'icon-'
+            baseClass: 'editor-icons',
+            classPrefix: 'icon-',
+            mixinPrefix: 'icon-'
           },
           font: 'editor-icons'
         }
@@ -33,6 +43,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Default task(s).
-  grunt.registerTask('default', ['webfont']);
+  grunt.registerTask('default', ['copy', 'webfont']);
 
 };
